@@ -1,0 +1,15 @@
+.panel.panel-default.goal
+  .panel-heading= goal.title
+  .panel-body
+    - goal.sub_goals.each_with_index do |sub_goal, index|
+      %li{class: get_sub_goal_class(index), style: get_sub_goal_visibility(index)}
+        - if sub_goal.done?
+          %del= sub_goal.title
+
+        - else
+          = sub_goal.title
+
+    - if goal.sub_goals.size > goal_display_size
+      %span
+        %a.more-sub-goals-link{href: '#'}
+          %em= more_sub_goals_link(goal)
